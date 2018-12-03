@@ -1,0 +1,6 @@
+[submodule "tools"]
+	path = tools
+	url = https://github.com/GoogleCloudPlatform/marketplace-k8s-app-tools.git
+[submodule "rtview-dataserver"]
+	path = rtview-dataserver
+	url = git@bitbucket.org:synergycodes/rtview-dataserver.git

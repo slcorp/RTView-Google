@@ -1,0 +1,82 @@
+application_api_version: v1beta1
+properties:
+  name:
+    type: string
+    x-google-marketplace:
+      type: NAME
+  namespace:
+    type: string
+    x-google-marketplace:
+      type: NAMESPACE
+  # global.ubb.reportingSecret:
+  #   type: string
+  #   x-google-marketplace:
+  #     type: REPORTING_SECRET
+  ubbAgentImage:
+    type: string
+    default: $REGISTRY/ubbagent:$TAG
+    x-google-marketplace:
+      type: IMAGE
+      image:
+        generatedProperties:
+          splitByColon:
+            before: rtview-dataserver.ubbagent.image
+            after: global.image.tag
+  rtviewDataserverImage:
+    type: string
+    default: $REGISTRY/rtview-dataserver:$TAG
+    x-google-marketplace:
+      type: IMAGE
+      image:
+        generatedProperties:
+          splitByColon:
+            before: rtview-dataserver.image.repository
+            after: global.image.tag
+  rtviewHistorianImage:
+    type: string
+    default: $REGISTRY/rtview-dataserver-historian:$TAG
+    x-google-marketplace:
+      type: IMAGE
+      image:
+        generatedProperties:
+          splitByColon:
+            before: rtview-historian.image.repository
+            after: global.image.tag
+  rtviewHistoryDbImage:
+    type: string
+    default: $REGISTRY/rtview-dataserver-history-db:$TAG
+    x-google-marketplace:
+      type: IMAGE
+      image:
+        generatedProperties:
+          splitByColon:
+            before: rtview-history-db.image.repository
+            after: global.image.tag
+  rtview-security-proxy.security.username:
+    type: string
+    default: demo
+    description: RTView Dataserver access username
+  rtview-security-proxy.security.password:
+    type: string
+    default: demo
+    description: RTView Dataserver access password
+  global.image.variant:
+    type: string
+    enum:
+      - ""
+      - kafka
+      - solace
+  global.historyDb.password:
+    type: string
+    x-google-marketplace:
+      type: GENERATED_PASSWORD
+      generatedPassword:
+        length: 12
+required:
+- name
+- namespace
+# - global.ubb.reportingSecret
+- ubbAgentImage
+- rtviewDataserverImage
+- rtviewHistorianImage
+- rtviewHistoryDbImage

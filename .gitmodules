@@ -1,0 +1,6 @@
+[submodule "rtview-kubernetes"]
+	path = rtview-kubernetes
+	url = git@github.com:slcorp/RTView-Kubernetes.git
+[submodule "rtview-dataserver/tools"]
+	path = rtview-dataserver/tools
+	url = "git@github.com:GoogleCloudPlatform/marketplace-k8s-app-tools.git#0.6.2"
