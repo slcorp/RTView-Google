@@ -6,7 +6,7 @@ RTView Dataserver description
 
 ## Click to Deploy
 
-Bootstrap you RTView Dataserver instance in a minutes. Use Google Cloud Platform Marketplace to deploy with a few clicks!
+Bootstrap your RTView Dataserver instance in a minutes. Use Google Cloud Platform Marketplace to deploy with a few clicks!
 
 https://console.cloud.google.com/launcher/kubernetes/config/aerospike-prod/aerospike-server-enterprise
 
