@@ -3,11 +3,11 @@ FROM launcher.gcr.io/google/debian9 AS build
 RUN apt-get update \
     && apt-get install -y --no-install-recommends gettext
 
-ADD rtview-dataserver/chart /tmp/chart
+ADD rtview-kubernetes/rtview-dataserver/chart /tmp/chart
 RUN cd /tmp \
     && tar -czvf /tmp/rtview-dataserver.tar.gz chart
 
-ADD schema.yaml /tmp/schema.yaml
+ADD rtview-dataserver/schema.yaml /tmp/schema.yaml
 
 # Provide registry prefix and tag for default values for images.
 ARG REGISTRY

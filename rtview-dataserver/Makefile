@@ -1,4 +1,4 @@
-TAG ?= latest
+TAG ?= 4.2.0.0
 
 # crd.Makefile provides targets to install Application CRD.
 include ./tools/crd.Makefile
@@ -73,7 +73,7 @@ app/build-images:: .build/rtview-dataserver/rtview-dataserver \
 			--build-arg TAG="$(TAG)" \
 			--tag "$(APP_DEPLOYER_IMAGE)" \
 			-f deployer/Dockerfile \
-			.
+			../
 	docker push "$(APP_DEPLOYER_IMAGE)"
 	@touch "$@"
 

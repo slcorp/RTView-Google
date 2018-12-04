@@ -46,6 +46,12 @@ gcloud iam service-accounts keys create key.json
 export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/key.json"
 ```
 
+Lastly, You have to add docker credentials helper to support Google Cloud Registry
+
+```
+gcloud auth configure-docker
+```
+
 Create Kubernetes cluster
 
 ```
