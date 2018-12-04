@@ -50,17 +50,17 @@ app/build-images:: .build/rtview-dataserver/rtview-dataserver \
 	mkdir -p "$@"
 
 .build/rtview-dataserver/deployer: deployer/* \
-																	 rtview-dataserver/chart/* \
-																	 rtview-dataserver/chart/charts/* \
-																	 rtview-dataserver/chart/charts/rtview-dataserver/* \
-																	 rtview-dataserver/chart/charts/rtview-dataserver/templates/* \
-																	 rtview-dataserver/chart/charts/rtview-historian/* \
-																	 rtview-dataserver/chart/charts/rtview-historian/templates/* \
-																	 rtview-dataserver/chart/charts/rtview-history-db/* \
-																	 rtview-dataserver/chart/charts/rtview-history-db/templates/* \
-																	 rtview-dataserver/chart/charts/rtview-security-proxy/* \
-																	 rtview-dataserver/chart/charts/rtview-security-proxy/templates/* \
-																	 rtview-dataserver/chart/templates/* \
+																	 ../rtview-kubernetes/rtview-dataserver/chart/* \
+																	 ../rtview-kubernetes/rtview-dataserver/chart/charts/* \
+																	 ../rtview-kubernetes/rtview-dataserver/chart/charts/rtview-dataserver/* \
+																	 ../rtview-kubernetes/rtview-dataserver/chart/charts/rtview-dataserver/templates/* \
+																	 ../rtview-kubernetes/rtview-dataserver/chart/charts/rtview-historian/* \
+																	 ../rtview-kubernetes/rtview-dataserver/chart/charts/rtview-historian/templates/* \
+																	 ../rtview-kubernetes/rtview-dataserver/chart/charts/rtview-history-db/* \
+																	 ../rtview-kubernetes/rtview-dataserver/chart/charts/rtview-history-db/templates/* \
+																	 ../rtview-kubernetes/rtview-dataserver/chart/charts/rtview-security-proxy/* \
+																	 ../rtview-kubernetes/rtview-dataserver/chart/charts/rtview-security-proxy/templates/* \
+																	 ../rtview-kubernetes/rtview-dataserver/chart/templates/* \
 																	 schema.yaml \
 																	 .build/marketplace/deployer/helm \
 																	 .build/var/APP_DEPLOYER_IMAGE \
@@ -82,11 +82,11 @@ app/build-images:: .build/rtview-dataserver/rtview-dataserver \
 # local registry.
 .build/rtview-dataserver/rtview-dataserver: .build/var/REGISTRY \
 																						.build/var/TAG \
-																						rtview-dataserver/scripts/build-dataserver.sh \
+																						../rtview-kubernetes/rtview-dataserver/scripts/build-dataserver.sh \
 																						| .build/rtview-dataserver
 	$(call print_target, $@)
-	chmod +x ./rtview-dataserver/scripts/build-dataserver.sh
-	REGISTRY="$(REGISTRY)" ./rtview-dataserver/scripts/build-dataserver.sh "$(TAG)"
+	chmod +x ../rtview-kubernetes/rtview-dataserver/scripts/build-dataserver.sh
+	REGISTRY="$(REGISTRY)" ../rtview-kubernetes/rtview-dataserver/scripts/build-dataserver.sh "$(TAG)"
 	@touch "$@"
 
 
