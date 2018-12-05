@@ -1,38 +1,38 @@
 TAG ?= 4.2.0.0
 
 # crd.Makefile provides targets to install Application CRD.
-include ./tools/crd.Makefile
+include ../Marketplace-Tools/crd.Makefile
 
 # gcloud.Makefile provides default values for
 # REGISTRY and NAMESPACE derived from local
 # gcloud and kubectl environments.
-include ./tools/gcloud.Makefile
+include ../Marketplace-Tools/gcloud.Makefile
 
 # marketplace.Makefile provides targets such as
 # ".build/marketplace/deployer/envsubst" to build the base
 # deployer images locally.
-include ./tools/marketplace.Makefile
+include ../Marketplace-Tools/marketplace.Makefile
 
 # ubbagent.Makefile provides ".build/ubbagent/ubbagent"
 # target to build the ubbagent image locally.
-include ./tools/ubbagent.Makefile
-include ./tools/var.Makefile
+include ../Marketplace-Tools/ubbagent.Makefile
+include ../Marketplace-Tools/var.Makefile
 
 # app.Makefile provides the main targets for installing the
 # application.
 # It requires several APP_* variables defined as followed.
-include ./tools/app.Makefile
+include ../Marketplace-Tools/app.Makefile
 
 APP_DEPLOYER_IMAGE ?= $(REGISTRY)/deployer:$(TAG)
-NAME ?= rtview-dataserver-1
+NAME ?= RTView-DataServer-1
 RTV_USERNAME ?= demo
 RTV_PASSWORD ?= demo
 APP_PARAMETERS ?= { \
 	"name": "$(NAME)", \
 	"namespace": "$(NAMESPACE)", \
-	"rtviewDataserverImage": "$(REGISTRY)/rtview-dataserver:$(TAG)", \
-	"rtviewHistorianImage": "$(REGISTRY)/rtview-dataserver-historian:$(TAG)", \
-	"rtviewHistoryDbImage": "$(REGISTRY)/rtview-dataserver-history-db:$(TAG)", \
+	"rtviewDataserverImage": "$(REGISTRY)/RTView-DataServer:$(TAG)", \
+	"rtviewHistorianImage": "$(REGISTRY)/RTView-DataServer-historian:$(TAG)", \
+	"rtviewHistoryDbImage": "$(REGISTRY)/RTView-DataServer-history-db:$(TAG)", \
 	"ubbAgentImage": "$(REGISTRY)/ubbagent:$(TAG)", \
 	"global.image.variant": "$(VARIANT)", \
 	"rtview-security-proxy.security.username": "$(RTV_USERNAME)", \
@@ -41,32 +41,32 @@ APP_PARAMETERS ?= { \
 
 # Extend the target as defined in app.Makefile to
 # include real dependencies.
-app/build-images:: .build/rtview-dataserver/rtview-dataserver \
-										.build/rtview-dataserver/ubbagent \
-										.build/rtview-dataserver/deployer
+app/build-images:: .build/RTView-DataServer/rtview-dataserver \
+										.build/RTView-DataServer/ubbagent \
+										.build/RTView-DataServer/deployer
 
 
-.build/rtview-dataserver: | .build
+.build/RTView-DataServer: | .build
 	mkdir -p "$@"
 
-.build/rtview-dataserver/deployer: deployer/* \
-																	 ../rtview-kubernetes/rtview-dataserver/chart/* \
-																	 ../rtview-kubernetes/rtview-dataserver/chart/charts/* \
-																	 ../rtview-kubernetes/rtview-dataserver/chart/charts/rtview-dataserver/* \
-																	 ../rtview-kubernetes/rtview-dataserver/chart/charts/rtview-dataserver/templates/* \
-																	 ../rtview-kubernetes/rtview-dataserver/chart/charts/rtview-historian/* \
-																	 ../rtview-kubernetes/rtview-dataserver/chart/charts/rtview-historian/templates/* \
-																	 ../rtview-kubernetes/rtview-dataserver/chart/charts/rtview-history-db/* \
-																	 ../rtview-kubernetes/rtview-dataserver/chart/charts/rtview-history-db/templates/* \
-																	 ../rtview-kubernetes/rtview-dataserver/chart/charts/rtview-security-proxy/* \
-																	 ../rtview-kubernetes/rtview-dataserver/chart/charts/rtview-security-proxy/templates/* \
-																	 ../rtview-kubernetes/rtview-dataserver/chart/templates/* \
+.build/RTView-DataServer/deployer: deployer/* \
+																	 ../RTView-Kubernetes/RTView-DataServer/chart/* \
+																	 ../RTView-Kubernetes/RTView-DataServer/chart/charts/* \
+																	 ../RTView-Kubernetes/RTView-DataServer/chart/charts/rtview-dataserver/* \
+																	 ../RTView-Kubernetes/RTView-DataServer/chart/charts/rtview-dataserver/templates/* \
+																	 ../RTView-Kubernetes/RTView-DataServer/chart/charts/rtview-historian/* \
+																	 ../RTView-Kubernetes/RTView-DataServer/chart/charts/rtview-historian/templates/* \
+																	 ../RTView-Kubernetes/RTView-DataServer/chart/charts/rtview-history-db/* \
+																	 ../RTView-Kubernetes/RTView-DataServer/chart/charts/rtview-history-db/templates/* \
+																	 ../RTView-Kubernetes/RTView-DataServer/chart/charts/rtview-security-proxy/* \
+																	 ../RTView-Kubernetes/RTView-DataServer/chart/charts/rtview-security-proxy/templates/* \
+																	 ../RTView-Kubernetes/RTView-DataServer/chart/templates/* \
 																	 schema.yaml \
 																	 .build/marketplace/deployer/helm \
 																	 .build/var/APP_DEPLOYER_IMAGE \
 																	 .build/var/REGISTRY \
 																	 .build/var/TAG \
-																	 | .build/rtview-dataserver
+																	 | .build/RTView-DataServer
 	$(call print_target, $@)
 	docker build \
 			--build-arg REGISTRY="$(REGISTRY)" \
@@ -80,20 +80,20 @@ app/build-images:: .build/rtview-dataserver/rtview-dataserver \
 
 # Simulate building of primary app image. Actually just copying public image to
 # local registry.
-.build/rtview-dataserver/rtview-dataserver: .build/var/REGISTRY \
+.build/RTView-DataServer/rtview-dataserver: .build/var/REGISTRY \
 																						.build/var/TAG \
-																						../rtview-kubernetes/rtview-dataserver/scripts/build-dataserver.sh \
-																						| .build/rtview-dataserver
+																						../RTView-Kubernetes/RTView-DataServer/scripts/build-dataserver.sh \
+																						| .build/RTView-DataServer
 	$(call print_target, $@)
-	chmod +x ../rtview-kubernetes/rtview-dataserver/scripts/build-dataserver.sh
-	REGISTRY="$(REGISTRY)" ../rtview-kubernetes/rtview-dataserver/scripts/build-dataserver.sh "$(TAG)"
+	chmod +x ../RTView-Kubernetes/RTView-DataServer/scripts/build-dataserver.sh
+	REGISTRY="$(REGISTRY)" ../RTView-Kubernetes/RTView-DataServer/scripts/build-dataserver.sh "$(TAG)"
 	@touch "$@"
 
 
-.build/rtview-dataserver/ubbagent: .build/ubbagent/ubbagent \
+.build/RTView-DataServer/ubbagent: .build/ubbagent/ubbagent \
 																	 .build/var/REGISTRY \
 																	 .build/var/TAG \
-																	 | .build/rtview-dataserver
+																	 | .build/RTView-DataServer
 	$(call print_target, $@)
 	docker build \
 		--tag "$(REGISTRY)/ubbagent:$(TAG)" \
