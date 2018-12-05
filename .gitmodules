@@ -1,6 +1,6 @@
 [submodule "rtview-dataserver/tools"]
-	path = Marketplace/Marketplace-Tools
+	path = Kubernetes/Marketplace-Tools
 	url = git@github.com:GoogleCloudPlatform/marketplace-k8s-app-tools.git#v0.6.2
 [submodule "rtview-kubernetes"]
-	path = Marketplace/RTView-Kubernetes
+	path = Kubernetes/RTView-Kubernetes
 	url = git@github.com:slcorp/RTView-Kubernetes.git
