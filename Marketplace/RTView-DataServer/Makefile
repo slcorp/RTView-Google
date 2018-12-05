@@ -30,9 +30,9 @@ RTV_PASSWORD ?= demo
 APP_PARAMETERS ?= { \
 	"name": "$(NAME)", \
 	"namespace": "$(NAMESPACE)", \
-	"rtviewDataserverImage": "$(REGISTRY)/RTView-DataServer:$(TAG)", \
-	"rtviewHistorianImage": "$(REGISTRY)/RTView-DataServer-historian:$(TAG)", \
-	"rtviewHistoryDbImage": "$(REGISTRY)/RTView-DataServer-history-db:$(TAG)", \
+	"rtviewDataserverImage": "$(REGISTRY)/rtview-dataserver:$(TAG)", \
+	"rtviewHistorianImage": "$(REGISTRY)/rtview-dataserver-historian:$(TAG)", \
+	"rtviewHistoryDbImage": "$(REGISTRY)/rtview-dataserver-history-db:$(TAG)", \
 	"ubbAgentImage": "$(REGISTRY)/ubbagent:$(TAG)", \
 	"global.image.variant": "$(VARIANT)", \
 	"rtview-security-proxy.security.username": "$(RTV_USERNAME)", \
@@ -41,7 +41,7 @@ APP_PARAMETERS ?= { \
 
 # Extend the target as defined in app.Makefile to
 # include real dependencies.
-app/build-images:: .build/RTView-DataServer/rtview-dataserver \
+app/build-images:: .build/RTView-DataServer/RTView-DataServer \
 										.build/RTView-DataServer/ubbagent \
 										.build/RTView-DataServer/deployer
 
@@ -52,8 +52,8 @@ app/build-images:: .build/RTView-DataServer/rtview-dataserver \
 .build/RTView-DataServer/deployer: deployer/* \
 																	 ../RTView-Kubernetes/RTView-DataServer/chart/* \
 																	 ../RTView-Kubernetes/RTView-DataServer/chart/charts/* \
-																	 ../RTView-Kubernetes/RTView-DataServer/chart/charts/rtview-dataserver/* \
-																	 ../RTView-Kubernetes/RTView-DataServer/chart/charts/rtview-dataserver/templates/* \
+																	 ../RTView-Kubernetes/RTView-DataServer/chart/charts/RTView-DataServer/* \
+																	 ../RTView-Kubernetes/RTView-DataServer/chart/charts/RTView-DataServer/templates/* \
 																	 ../RTView-Kubernetes/RTView-DataServer/chart/charts/rtview-historian/* \
 																	 ../RTView-Kubernetes/RTView-DataServer/chart/charts/rtview-historian/templates/* \
 																	 ../RTView-Kubernetes/RTView-DataServer/chart/charts/rtview-history-db/* \
@@ -80,7 +80,7 @@ app/build-images:: .build/RTView-DataServer/rtview-dataserver \
 
 # Simulate building of primary app image. Actually just copying public image to
 # local registry.
-.build/RTView-DataServer/rtview-dataserver: .build/var/REGISTRY \
+.build/RTView-DataServer/RTView-DataServer: .build/var/REGISTRY \
 																						.build/var/TAG \
 																						../RTView-Kubernetes/RTView-DataServer/scripts/build-dataserver.sh \
 																						| .build/RTView-DataServer
