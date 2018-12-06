@@ -13,7 +13,7 @@ There are at least three distinct ways in which RTView can be deployed to GCP. T
 
 ## Compute Engine
 
-The Google Cloud Marketplace offers a single-click installation of an RTView DataServer, fully configured, and avaialble for immediate use. It is a Virtual Machine deployment, running on the Google Compute Engine, and billed automatically based on usage.
+The Google Cloud Marketplace offers a single-click installation of an RTView DataServer, fully configured, and available for immediate use. It is a Virtual Machine deployment, running on the Google Compute Engine, and billed automatically based on usage.
 
 Clicking into the ComputeEngine folder of this repository will take you to the instructions for deploying and making use of the RTView DataServer instance that you create. 
 
