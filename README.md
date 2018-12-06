@@ -6,18 +6,20 @@ RTView is a real-time data management, visualization and analytics engine provid
 
 The Google Cloud Platform (GCP) is a suite of cloud computing services that runs on the same infrastructure that Google uses internally for its end-user products. This platform makes it convenient and easy to deploy service components of any application into the Google Cloud. 
 
-The instructions provided here show how to configure, install, and run an RTView DataServer on GCP.
+The instructions provided here show how to install, configure, and run an RTView DataServer on GCP.
 The RTView DataServer is the data management component that provides in-memory caching and archival to persistent storage. Data stored there may be consumed by displays, dashboards, reports and alerts provided by a visualization and analytics tool such as RTView Cloud.
 
 There are at least three distinct ways in which RTView can be deployed to GCP. These are described in the sections below.
 
 ## Compute Engine
 
-Thsi describes how to deplopy quickly to compute engine and obtain a completely enabled RTView Data Server.
+The Google Cloud Marketplace offers a single-click installation of an RTView DataServer, fully configured, and avaialble for immediate use. It is a Virtual Machine deployment, running on the Google Compute Engine, and billed automatically based on usage.
+
+Clicking into the ComputeEngine folder of this repository will take you to the instructions for deploying and making use of the RTView DataServer instance that you create. 
 
 ## Kubernetes
 
-If you want to use Kubernettes, details provided here. REferences base information contained in the RTView-Kubernetes repo.
+If you want to use Kubernettes, details provided here. It references base information contained in the RTView-Kubernetes repo.
 
 ## Docker Container
 
