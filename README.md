@@ -21,7 +21,7 @@ Clicking into the ComputeEngine folder of this repository will take you to the i
 
 In some cases, there may be a need to deploy RTView with a configuration that is different from the defaults provided in the ComputeEngine version.
 
-In this case, it is recommended that you use the Kubernetes deployment model and build your desired configuration using the instructions provided by clicking to the Kubernetes folder of this repo. Kubernetes is a container orchestration tool, offered in Google Cloud, that can integrate and automatically integrate multiple services into complex applications.
+In this case, it is recommended that you use the Kubernetes deployment model and build your desired configuration using the instructions provided by clicking to the Kubernetes folder of this repo. Kubernetes is a container orchestration tool, offered in Google Cloud. It can deploy and automatically integrate multiple services into complex applications.
 
 ## Docker Container
 
